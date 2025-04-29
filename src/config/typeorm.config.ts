@@ -1,14 +1,10 @@
-import { DataSource } from 'typeorm';
+import { DataSourceOptions } from 'typeorm';
 import { User } from '../users/user.entity';
 import * as dotenv from 'dotenv';
 
-dotenv.config(); // 显式加载.env文件
+dotenv.config();
 
-console.log('process.env.DB_HOST', process.env.DB_HOST);
-console.log('process.env.DB_PORT', process.env.DB_PORT);
-console.log('process.env.DB_USER', process.env.DB_USER);
-console.log('process.env.DB_PASSWORD', process.env.DB_PASSWORD);
-const dataSource = new DataSource({
+export const typeormConfig: DataSourceOptions = {
   type: 'postgres',
   host: process.env.DB_HOST,
   port: parseInt(process.env.DB_PORT || '5432'),
@@ -17,8 +13,6 @@ const dataSource = new DataSource({
   database: process.env.DB_NAME,
   entities: [User],
   migrations: ['src/database/migrations/*.ts'],
-  synchronize: true,
+  synchronize: false,
   ssl: false,
-});
-
-export default dataSource;
+};

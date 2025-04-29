@@ -1,14 +1,10 @@
 import { DataSource } from 'typeorm';
 import { seedUsers } from './user.seed';
-import typeormConfig from '../../config/typeorm.config';
+import {typeormConfig} from '../../config/typeorm.config';
 
 async function runSeeds() {
-  // 修改为直接使用typeormConfig创建DataSource
-  const dataSource = new DataSource({
-    ...typeormConfig.options, // 使用配置中的options
-    type: 'postgres' // 明确指定数据库类型
-  });
-  
+  // 直接使用typeormConfig创建DataSource
+  const dataSource = new DataSource(typeormConfig);
   await dataSource.initialize();
   
   try {

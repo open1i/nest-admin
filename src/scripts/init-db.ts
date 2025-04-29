@@ -1,8 +1,8 @@
 import { DataSource } from 'typeorm';
-import typeormConfig from '../config/typeorm.config';
+import { typeormConfig } from '../config/typeorm.config';
 
 async function initializeDatabase() {
-  const dataSource = new DataSource(typeormConfig.options);
+  const dataSource = new DataSource(typeormConfig);
   await dataSource.initialize();
   
   try {
