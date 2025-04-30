@@ -36,4 +36,16 @@ export class AuthController {
     }
     return this.authService.login(user);
   }
+
+  @Post('test')
+  @ApiOperation({ summary: '测试接口' })
+  @ApiResponse({ status: 200, description: '测试成功' })
+  async testEndpoint(@Body() body: any) {
+    console.log('测试请求体:', body);
+    return {
+      status: 'success',
+      message: '测试接口响应正常',
+      receivedData: body
+    };
+  }
 }
