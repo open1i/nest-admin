@@ -7,7 +7,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: ['log', 'error', 'warn', 'debug', 'verbose']
   });
-  
+  // 添加CORS配置
+  app.enableCors({
+    origin: 'http://localhost:5173',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
   // Swagger配置
   const config = new DocumentBuilder()
     .setTitle('Nest Admin API')
@@ -25,7 +30,9 @@ async function bootstrap() {
     transform: true
   }));
   
-  app.setGlobalPrefix('api/v1');
+  app.setGlobalPrefix('api/v1',{
+    exclude: ['auth']
+  });
   await app.listen(process.env.PORT ?? 3000);
   console.log(`✅ 应用已启动，监听端口 ${process.env.PORT ?? 3000}`);
 }

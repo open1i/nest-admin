@@ -23,7 +23,8 @@
     "migration:run": "typeorm-ts-node-commonjs migration:run -d src/config/typeorm.config.ts",
     "migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/config/typeorm.config.ts",
     "seed:run": "ts-node src/database/seeds/run-seeds.ts",
-    "db:init": "ts-node src/scripts/init-db.ts"
+    "db:init": "ts-node src/scripts/init-db.ts",
+    "export:swagger": "ts-node scripts/export-swagger.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
