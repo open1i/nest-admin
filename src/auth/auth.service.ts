@@ -25,6 +25,13 @@ export class AuthService {
     const payload = { username: user.username, sub: user.id };
     return {
       access_token: this.jwtService.sign(payload),
+      user: {
+        id: user.id,
+        username: user.username,
+        // 其他需要返回的用户字段
+        roles: user.roles || [],
+        email: user.email || ''
+      }
     };
   }
 }
