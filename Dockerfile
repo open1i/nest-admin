@@ -1,5 +1,5 @@
 # 第一阶段：构建阶段
-FROM node:20-alpine12.2 AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
@@ -18,7 +18,7 @@ COPY . .
 RUN pnpm build
 
 # 第二阶段：生产镜像
-FROM node:20-alpine12.2
+FROM node:20-alpine
 
 WORKDIR /app
 
