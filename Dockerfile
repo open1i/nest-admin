@@ -27,11 +27,12 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package.json .
 
-# 复制必要的配置文件
-COPY .env .
-
 # 暴露端口
 EXPOSE 3000
+
+# 设置环境变量
+ENV NODE_ENV=production \
+    PORT=3000
 
 # 启动命令
 CMD ["node", "dist/main.js"]
